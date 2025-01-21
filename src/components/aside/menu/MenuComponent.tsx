@@ -8,18 +8,16 @@ type TMenuComponent = {
   isAsideExpanded: boolean
 }
 
-const MenuComponent = ({ items, isAsideExpanded }: TMenuComponent) => {
-  return (
-    <div
-      className={cn(styles.menuContainer, {
-        [styles.noHover]: !isAsideExpanded,
-      })}
-    >
-      {items.map((item) => (
-        <MenuItemComponent {...item} key={item.id} isAsideExpanded={isAsideExpanded} />
-      ))}
-    </div>
-  )
-}
+const MenuComponent = ({ items, isAsideExpanded }: TMenuComponent) => (
+  <div
+    className={cn(styles.menuContainer, {
+      [styles.noHover]: !isAsideExpanded,
+    })}
+  >
+    {items.map((item) => (
+      <MenuItemComponent {...item} key={item.id} isAsideExpanded={isAsideExpanded} />
+    ))}
+  </div>
+)
 
 export default MenuComponent

@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { memo, useCallback, useRef } from 'react'
 import cn from 'classnames'
 import { motion } from 'framer-motion'
 import { getCollapseMenuListAnimationParams } from '@/utils/styleHelpers.ts'
@@ -18,69 +18,72 @@ type TMenuItemComponent = TMenuItem & {
   isAsideExpanded: boolean
 }
 
-const MenuItemComponent = ({
-  id,
-  label,
-  isExpanded,
-  level = 0,
-  onToggle,
-  icon,
-  children,
-  isAsideExpanded,
-  canHaveChildren,
-}: TMenuItemComponent) => {
-  const ref = useRef<HTMLDivElement | null>(null)
-  const isHovered = useHover(ref, !isAsideExpanded)
-  const leftIconName = getLeftIconName(level, isExpanded, children) || icon
-  const rightIconName = getRightIconName(level, isExpanded, children)
-  const childrenNodes = children || []
+const MenuItemComponent = memo(
+  ({
+    id,
+    label,
+    isExpanded,
+    level = 0,
+    onToggle,
+    icon,
+    children,
+    isAsideExpanded,
+    canHaveChildren,
+  }: TMenuItemComponent) => {
+    const ref = useRef<HTMLDivElement | null>(null)
+    const isHovered = useHover(ref, !isAsideExpanded)
+    const childrenNodes = children || []
+    const hasChildren = childrenNodes.length > 0
+    const leftIconName = getLeftIconName(level, isExpanded, hasChildren) || icon
+    const rightIconName = getRightIconName(level, isExpanded, hasChildren)
 
-  const handleToggle = () => {
-    if (typeof onToggle === 'function') {
-      onToggle(id)
+    const handleToggle = useCallback(() => {
+      if (typeof onToggle === 'function') {
+        onToggle(id)
+      }
+    }, [id])
+
+    if (!isAsideExpanded) {
+      return (
+        <MenuButtonComponent leftIconName={leftIconName} onClick={handleToggle} isHoverDisabled />
+      )
     }
-  }
 
-  if (!isAsideExpanded) {
     return (
-      <MenuButtonComponent leftIconName={leftIconName} onClick={handleToggle} isHoverDisabled />
+      <div
+        className={cn(styles.container, {
+          [styles.bottomGap]: isMenuItemWithBottomGap(id),
+          [styles.leftPadding]: level > 0,
+        })}
+      >
+        <div className={styles.elementWrapper} ref={ref}>
+          <MenuButtonComponent
+            id={id}
+            leftIconName={leftIconName}
+            rightIconName={rightIconName}
+            onClick={handleToggle}
+            label={label}
+            isHovered={isHovered}
+            isExpanded={isExpanded}
+            canHaveChildren={canHaveChildren}
+          />
+        </div>
+        {hasChildren && (
+          <motion.div {...getCollapseMenuListAnimationParams(isExpanded)}>
+            {childrenNodes.map((child) => (
+              <MenuItemComponent
+                {...child}
+                key={child.id}
+                level={level + 1}
+                onToggle={onToggle}
+                isAsideExpanded={isAsideExpanded}
+              />
+            ))}
+          </motion.div>
+        )}
+      </div>
     )
   }
-
-  return (
-    <div
-      className={cn(styles.container, {
-        [styles.bottomGap]: isMenuItemWithBottomGap(id),
-        [styles.leftPadding]: level > 0,
-      })}
-    >
-      <div className={styles.elementWrapper} ref={ref}>
-        <MenuButtonComponent
-          id={id}
-          leftIconName={leftIconName}
-          rightIconName={rightIconName}
-          onClick={handleToggle}
-          label={label}
-          isHovered={isHovered}
-          isExpanded={isExpanded}
-          canHaveChildren={canHaveChildren}
-        />
-      </div>
-      {childrenNodes.length > 0 && (
-        <motion.div {...getCollapseMenuListAnimationParams(isExpanded)}>
-          {childrenNodes.map((child) => (
-            <MenuItemComponent
-              {...child}
-              key={child.id}
-              level={level + 1}
-              onToggle={onToggle}
-              isAsideExpanded={isAsideExpanded}
-            />
-          ))}
-        </motion.div>
-      )}
-    </div>
-  )
-}
+)
 
 export default MenuItemComponent
