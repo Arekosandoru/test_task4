@@ -2,6 +2,6 @@
 
 Front-end test task
 
-npm i
+pnpm i
 npm run build
 npm run preview
