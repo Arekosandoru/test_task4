@@ -8,7 +8,7 @@ import {
   getRightIconName,
   isMenuItemWithBottomGap,
 } from '@/utils/asideMenuHelpers.ts'
-import { useHover } from '@/hooks/useHover.tsx'
+import { useHover } from '@/hooks/ui/useHover.tsx'
 import { MenuButtonComponent } from '@/components/aside'
 import styles from './MenuItemStyles.module.css'
 

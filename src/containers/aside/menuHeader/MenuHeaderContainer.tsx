@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleAside } from '@/app/slices/asideSlice.ts'
-import useAppSelector from '@/hooks/useAppSelector.ts'
+import useAppSelector from '@/hooks/state/useAppSelector.ts'
 import { MenuHeaderComponent } from '@/components/aside'
 
 const MenuHeaderContainer = () => {

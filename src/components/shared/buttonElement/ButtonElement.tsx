@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useRef } from 'react'
 import type { JSX } from 'react'
 import cn from 'classnames'
-import { useHover } from '@/hooks/useHover.tsx'
+import { useHover } from '@/hooks/ui/useHover.tsx'
 import IconElement, {
   ICON_SIZE_BLOCK,
   ICON_STATE_HOVERED,

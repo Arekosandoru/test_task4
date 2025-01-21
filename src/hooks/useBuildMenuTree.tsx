@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { TMenuItem, toggleExpand } from '@/app/slices/asideMenuSlice.ts'
-import useAppSelector from '@/hooks/useAppSelector.ts'
+import useAppSelector from '@/hooks/state/useAppSelector.ts'
 
 const buildTree = (items: TMenuItem[], parentId: string | null = null): TMenuItem[] =>
   items

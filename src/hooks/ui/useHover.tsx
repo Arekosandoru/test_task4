@@ -18,7 +18,7 @@ export function useHover(target: MutableRefObject<HTMLElement | null>, isHoverDi
       el.removeEventListener('mouseenter', onMouseEnter)
       el.removeEventListener('mouseleave', onMouseLeave)
     }
-  }, [target])
+  }, [target, isHoverDisabled])
 
   if (isHoverDisabled) return false
 

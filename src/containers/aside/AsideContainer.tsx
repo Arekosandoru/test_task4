@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleAside } from '@/app/slices/asideSlice.ts'
-import useAppSelector from '@/hooks/useAppSelector.ts'
+import useAppSelector from '@/hooks/state/useAppSelector.ts'
 import AsideLayout from '@/layout/asideLayout/AsideLayout.tsx'
 import MenuHeaderContainer from '@/containers/aside/menuHeader/MenuHeaderContainer.tsx'
 // Производительность в production-сборке уже оптимальна, и данная оптимизация может быть избыточной.

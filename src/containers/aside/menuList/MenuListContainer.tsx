@@ -1,4 +1,4 @@
-import useAppSelector from '@/hooks/useAppSelector.ts'
+import useAppSelector from '@/hooks/state/useAppSelector.ts'
 import useBuildMenuTree from '@/hooks/useBuildMenuTree.tsx'
 import { MenuComponent } from '@/components/aside'
 
