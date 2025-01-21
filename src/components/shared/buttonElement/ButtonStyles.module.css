@@ -1,0 +1,57 @@
+.button {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background-color: transparent;
+
+  text-align: center;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+
+  border-radius: 5px;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+
+  color: var(--text-color-secondary);
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: #002a660d;
+}
+
+.sm {
+  height: 16px;
+}
+
+.md {
+  height: 24px;
+}
+
+.lg {
+  height: 32px;
+  padding: 6px;
+}
+
+.primary,
+.primary path {
+  fill: var(--icon-color-primary);
+  color: var(--icon-color-primary);
+}
+
+.secondary,
+.secondary path {
+  fill: var(--icon-color-secondary);
+  color: var(--icon-color-secondary);
+}

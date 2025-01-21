@@ -1,0 +1,6 @@
+.controlPanel {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  min-width: 48px;
+}

@@ -1,0 +1,27 @@
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --icon-color-primary: #8a97a8;
+  --icon-color-secondary: #b6bec9;
+  --icon-color-hovered: #576375;
+  --text-color-secondary: #4c5767;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}

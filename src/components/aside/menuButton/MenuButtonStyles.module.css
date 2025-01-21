@@ -1,0 +1,21 @@
+.button {
+  width: 100%;
+  color: var(--text-color-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text {
+  font-weight: 400;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.textExpanded {
+  color: #1d2530;
+  font-weight: 500;
+}

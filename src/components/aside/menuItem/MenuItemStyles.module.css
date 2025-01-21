@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.bottomGap {
+  margin-bottom: 12px;
+}
+
+.leftPadding {
+  padding-left: 12px;
+}

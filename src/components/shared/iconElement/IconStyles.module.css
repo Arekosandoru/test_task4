@@ -1,0 +1,43 @@
+.icon {
+  flex-shrink: 0;
+}
+
+.block {
+  width: 100%;
+  height: 100%;
+}
+
+.xs {
+  width: 16px;
+  height: 16px;
+}
+
+.sm {
+  width: 20px;
+  height: 20px;
+}
+
+.md {
+  width: 24px;
+  height: 24px;
+}
+
+.primary,
+.primary path {
+  fill: var(--icon-color-primary);
+  color: var(--icon-color-primary);
+}
+
+.secondary,
+.secondary path {
+  fill: var(--icon-color-secondary);
+  color: var(--icon-color-secondary);
+}
+
+.icon:hover,
+.icon:hover path,
+.hovered,
+.hovered path {
+  fill: var(--icon-color-hovered);
+  color: var(--icon-color-hovered);
+}

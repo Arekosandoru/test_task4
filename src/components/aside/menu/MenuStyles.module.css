@@ -1,0 +1,9 @@
+.menuContainer {
+  padding: 16px 4px 16px 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.noHover {
+  pointer-events: none;
+}
