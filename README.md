@@ -2,6 +2,8 @@
 
 Front-end test task
 
+```bash
 pnpm i
 npm run build
 npm run preview
+```
