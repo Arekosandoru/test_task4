@@ -1,8 +1,9 @@
 import { memo, useCallback, useRef } from 'react'
+import { useDispatch } from 'react-redux'
 import cn from 'classnames'
 import { motion } from 'framer-motion'
 import { getCollapseMenuListAnimationParams } from '@/utils/styleHelpers.ts'
-import { TMenuItem } from '@/app/slices/asideMenuSlice.ts'
+import { TMenuItem, toggleExpand } from '@/app/slices/asideMenuSlice.ts'
 import {
   getLeftIconName,
   getRightIconName,
@@ -14,7 +15,6 @@ import styles from './MenuItemStyles.module.css'
 
 type TMenuItemComponent = TMenuItem & {
   level?: number
-  onToggle?: (id: string) => void
   isAsideExpanded: boolean
 }
 
@@ -24,12 +24,12 @@ const MenuItemComponent = memo(
     label,
     isExpanded,
     level = 0,
-    onToggle,
     icon,
     children,
     isAsideExpanded,
     canHaveChildren,
   }: TMenuItemComponent) => {
+    const dispatch = useDispatch()
     const ref = useRef<HTMLDivElement | null>(null)
     const isHovered = useHover(ref, !isAsideExpanded)
     const childrenNodes = children || []
@@ -38,9 +38,7 @@ const MenuItemComponent = memo(
     const rightIconName = getRightIconName(level, isExpanded, hasChildren)
 
     const handleToggle = useCallback(() => {
-      if (typeof onToggle === 'function') {
-        onToggle(id)
-      }
+      dispatch(toggleExpand(id))
     }, [id])
 
     if (!isAsideExpanded) {
@@ -75,7 +73,6 @@ const MenuItemComponent = memo(
                 {...child}
                 key={child.id}
                 level={level + 1}
-                onToggle={onToggle}
                 isAsideExpanded={isAsideExpanded}
               />
             ))}

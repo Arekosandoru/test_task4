@@ -1,5 +1,4 @@
-import { useDispatch } from 'react-redux'
-import { TMenuItem, toggleExpand } from '@/app/slices/asideMenuSlice.ts'
+import { TMenuItem } from '@/app/slices/asideMenuSlice.ts'
 import useAppSelector from '@/hooks/state/useAppSelector.ts'
 
 const buildTree = (items: TMenuItem[], parentId: string | null = null): TMenuItem[] =>
@@ -11,23 +10,9 @@ const buildTree = (items: TMenuItem[], parentId: string | null = null): TMenuIte
     }))
 
 const useBuildMenuTree = (): TMenuItem[] => {
-  const dispatch = useDispatch()
   const menuItems = useAppSelector((state) => state.menu.items)
 
-  const handleToggle = (id: string) => {
-    dispatch(toggleExpand(id))
-  }
-
-  return (buildTree(menuItems) || []).map((item) => {
-    if (item.children && item.children.length > 0) {
-      return {
-        ...item,
-        onToggle: handleToggle,
-      }
-    }
-
-    return item
-  })
+  return buildTree(menuItems) || []
 }
 
 export default useBuildMenuTree
