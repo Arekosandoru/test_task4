@@ -13,6 +13,19 @@ import { useHover } from '@/hooks/ui/useHover.tsx'
 import { MenuButtonComponent } from '@/components/aside'
 import styles from './MenuItemStyles.module.css'
 
+const arePropsEqual = (prevProps: TMenuItemComponent, nextProps: TMenuItemComponent) => {
+  return (
+    prevProps.id === nextProps.id &&
+    prevProps.label === nextProps.label &&
+    prevProps.isExpanded === nextProps.isExpanded &&
+    prevProps.level === nextProps.level &&
+    prevProps.icon === nextProps.icon &&
+    prevProps.isAsideExpanded === nextProps.isAsideExpanded &&
+    prevProps.canHaveChildren === nextProps.canHaveChildren &&
+    JSON.stringify(prevProps.children) === JSON.stringify(nextProps.children)
+  )
+}
+
 type TMenuItemComponent = TMenuItem & {
   level?: number
   isAsideExpanded: boolean
@@ -80,7 +93,8 @@ const MenuItemComponent = memo(
         )}
       </div>
     )
-  }
+  },
+  arePropsEqual
 )
 
 export default MenuItemComponent
